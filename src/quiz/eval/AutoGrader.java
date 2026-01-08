@@ -21,8 +21,11 @@ public class AutoGrader {
     }
 
     private boolean testBracketBalancer() {
-        BracketBalancer balancer = new BracketBalancer();
-        return balancer.isBalanced("(a[b]{c})") && !balancer.isBalanced("(a[b]{c}");
+        BracketBalancer.BalanceResult case1 = BracketBalancer.check("((a+b)*5)-7");
+        BracketBalancer.BalanceResult case2 = BracketBalancer.check("2*[(a+b)/2.5 + x - 7*y");
+        BracketBalancer.BalanceResult case3 = BracketBalancer.check("{[()]}");
+        BracketBalancer.BalanceResult case4 = BracketBalancer.check("[(])");
+        return case1.balanced && !case2.balanced && case3.balanced && !case4.balanced;
     }
 
     private boolean testDotProduct() {
